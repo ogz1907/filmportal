@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FİLM PORTAL - Film Dünyası</title>
+
+    <title>Film Portal - Film Dünyası</title>
 
     <style>
         * {
@@ -13,100 +14,204 @@
         }
 
         body {
+            font-family: Arial, sans-serif;
             background: #111;
             color: white;
-            font-family: Arial, sans-serif;
         }
 
         header {
-            padding: 25px 5%;
-            background: #181818;
+            background: #1b1b1b;
+            padding: 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: bold;
+        }
+
+        .logo span {
             color: #e50914;
         }
 
         nav a {
-            color: white;
+            color: #ddd;
             text-decoration: none;
             margin-left: 20px;
         }
 
+        nav a:hover {
+            color: #e50914;
+        }
+
         .hero {
-            padding: 80px 5%;
-            background: linear-gradient(90deg, #111, #222);
+            text-align: center;
+            padding: 70px 20px;
+            background: linear-gradient(180deg, #191919, #111);
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 42px;
             margin-bottom: 15px;
         }
 
         .hero p {
-            color: #ccc;
+            color: #bbb;
             font-size: 18px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
-        .search {
-            width: 100%;
+        .search-box {
             max-width: 600px;
+            margin: auto;
+            display: flex;
+        }
+
+        .search-box input {
+            flex: 1;
             padding: 16px;
             border: none;
-            border-radius: 6px;
+            outline: none;
             font-size: 16px;
+            border-radius: 6px 0 0 6px;
         }
 
-        section {
-            padding: 40px 5%;
+        .search-box button {
+            padding: 16px 25px;
+            border: none;
+            background: #e50914;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 0 6px 6px 0;
         }
 
-        section h2 {
+        .search-box button:hover {
+            background: #b20710;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-size: 28px;
             margin-bottom: 25px;
         }
 
         .movies {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
 
         .movie {
-            background: #1d1d1d;
+            background: #1c1c1c;
             border-radius: 8px;
             overflow: hidden;
-            padding-bottom: 15px;
+            transition: transform 0.2s;
+        }
+
+        .movie:hover {
+            transform: translateY(-5px);
         }
 
         .poster {
-            height: 260px;
+            height: 300px;
             background: linear-gradient(135deg, #333, #555);
             display: flex;
             align-items: center;
             justify-content: center;
             color: #aaa;
+            font-size: 18px;
+        }
+
+        .movie-info {
+            padding: 15px;
         }
 
         .movie h3 {
-            padding: 12px 12px 5px;
+            margin-bottom: 8px;
         }
 
         .movie p {
-            padding: 0 12px;
             color: #aaa;
+            font-size: 14px;
+        }
+
+        .rating {
+            color: #ffd700;
+            margin-top: 10px;
+        }
+
+        .genres {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .genre {
+            background: #222;
+            padding: 12px 20px;
+            border-radius: 20px;
+            color: #ddd;
         }
 
         footer {
-            text-align: center;
+            margin-top: 40px;
             padding: 30px;
-            background: #181818;
-            color: #888;
+            text-align: center;
+            background: #1b1b1b;
+            color: #777;
+        }
+
+        @media (max-width: 800px) {
+            .movies {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header-inner {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .movies {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-box input,
+            .search-box button {
+                border-radius: 6px;
+                width: 100%;
+            }
+
+            .search-box button {
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
@@ -114,70 +219,174 @@
 <body>
 
 <header>
-    <div class="logo">FİLM PORTAL</div>
+    <div class="header-inner">
 
-    <nav>
-        <a href="#">Ana Sayfa</a>
-        <a href="#">Filmler</a>
-        <a href="#">Türler</a>
-    </nav>
-</header>
-
-<div class="hero">
-    <h1>Film dünyasını keşfet 🎬</h1>
-    <p>Aradığın filmi bul, hakkında bilgi edin ve nereden yasal olarak izleyebileceğini keşfet.</p>
-
-    <input class="search" type="text" placeholder="Film veya dizi ara...">
-</div>
-
-<section>
-    <h2>🔥 Popüler Filmler</h2>
-
-    <div class="movies">
-
-        <div class="movie">
-            <div class="poster">Film Afişi</div>
-            <h3>The Mill</h3>
-            <p>⭐ 6.2 • 2023</p>
+        <div class="logo">
+            <span>Film</span> Portal
         </div>
 
-        <div class="movie">
-            <div class="poster">Film Afişi</div>
-            <h3>Interstellar</h3>
-            <p>⭐ 8.7 • 2014</p>
-        </div>
-
-        <div class="movie">
-            <div class="poster">Film Afişi</div>
-            <h3>Inception</h3>
-            <p>⭐ 8.8 • 2010</p>
-        </div>
-
-        <div class="movie">
-            <div class="poster">Film Afişi</div>
-            <h3>Dune</h3>
-            <p>⭐ 8.0 • 2021</p>
-        </div>
+        <nav>
+            <a href="#">Ana Sayfa</a>
+            <a href="#filmler">Filmler</a>
+            <a href="#turler">Türler</a>
+        </nav>
 
     </div>
-</section>
+</header>
 
-<section>
-    <h2>🎭 Film Türleri</h2>
+
+<section class="hero">
+
+    <h1>Film dünyasını keşfet 🎬</h1>
 
     <p>
-        Aksiyon &nbsp; • &nbsp;
-        Korku &nbsp; • &nbsp;
-        Komedi &nbsp; • &nbsp;
-        Bilim Kurgu &nbsp; • &nbsp;
-        Dram &nbsp; • &nbsp;
-        Gerilim
+        Filmleri keşfet, puanlarını ve bilgilerini incele.
+        Yasal izleme seçeneklerini bul.
     </p>
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Film ara..."
+        >
+
+        <button onclick="searchMovies()">
+            Ara
+        </button>
+
+    </div>
+
 </section>
 
+
+<main class="container">
+
+    <section id="filmler">
+
+        <h2 class="section-title">
+            Popüler Filmler
+        </h2>
+
+        <div class="movies" id="movieList">
+
+            <div class="movie">
+                <div class="poster">
+                    Film Afişi
+                </div>
+
+                <div class="movie-info">
+                    <h3>Interstellar</h3>
+                    <p>2014 • Bilim Kurgu</p>
+                    <div class="rating">⭐ 8.7</div>
+                </div>
+            </div>
+
+
+            <div class="movie">
+                <div class="poster">
+                    Film Afişi
+                </div>
+
+                <div class="movie-info">
+                    <h3>Inception</h3>
+                    <p>2010 • Bilim Kurgu</p>
+                    <div class="rating">⭐ 8.8</div>
+                </div>
+            </div>
+
+
+            <div class="movie">
+                <div class="poster">
+                    Film Afişi
+                </div>
+
+                <div class="movie-info">
+                    <h3>Dune</h3>
+                    <p>2021 • Bilim Kurgu</p>
+                    <div class="rating">⭐ 8.0</div>
+                </div>
+            </div>
+
+
+            <div class="movie">
+                <div class="poster">
+                    Film Afişi
+                </div>
+
+                <div class="movie-info">
+                    <h3>The Mill</h3>
+                    <p>2023 • Gerilim</p>
+                    <div class="rating">⭐ 6.2</div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="turler" style="margin-top:50px;">
+
+        <h2 class="section-title">
+            Film Türleri
+        </h2>
+
+        <div class="genres">
+
+            <div class="genre">Aksiyon</div>
+            <div class="genre">Korku</div>
+            <div class="genre">Komedi</div>
+            <div class="genre">Bilim Kurgu</div>
+            <div class="genre">Dram</div>
+            <div class="genre">Gerilim</div>
+            <div class="genre">Macera</div>
+            <div class="genre">Fantastik</div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
 <footer>
-    © 2026 Film Portal
+    © 2026 Film Portal — Film keşif platformu
 </footer>
+
+
+<script>
+
+function searchMovies() {
+
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const movies =
+        document.querySelectorAll(".movie");
+
+    movies.forEach(function(movie) {
+
+        const title =
+            movie.querySelector("h3")
+            .textContent
+            .toLowerCase();
+
+        if (title.includes(search)) {
+            movie.style.display = "block";
+        } else {
+            movie.style.display = "none";
+        }
+
+    });
+
+}
+
+</script>
 
 </body>
 </html>
