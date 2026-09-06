@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FilmIportal - Film Dünyası</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            padding: 25px 5%;
+            background: #181818;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #e50914;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .hero {
+            padding: 80px 5%;
+            background: linear-gradient(90deg, #111, #222);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            color: #ccc;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .search {
+            width: 100%;
+            max-width: 600px;
+            padding: 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        section {
+            padding: 40px 5%;
+        }
+
+        section h2 {
+            margin-bottom: 25px;
+        }
+
+        .movies {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .movie {
+            background: #1d1d1d;
+            border-radius: 8px;
+            overflow: hidden;
+            padding-bottom: 15px;
+        }
+
+        .poster {
+            height: 260px;
+            background: linear-gradient(135deg, #333, #555);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+        }
+
+        .movie h3 {
+            padding: 12px 12px 5px;
+        }
+
+        .movie p {
+            padding: 0 12px;
+            color: #aaa;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #181818;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">FilmIportal</div>
+
+    <nav>
+        <a href="#">Ana Sayfa</a>
+        <a href="#">Filmler</a>
+        <a href="#">Türler</a>
+    </nav>
+</header>
+
+<div class="hero">
+    <h1>Film dünyasını keşfet 🎬</h1>
+    <p>Aradığın filmi bul, hakkında bilgi edin ve nereden yasal olarak izleyebileceğini keşfet.</p>
+
+    <input class="search" type="text" placeholder="Film veya dizi ara...">
+</div>
+
+<section>
+    <h2>🔥 Popüler Filmler</h2>
+
+    <div class="movies">
+
+        <div class="movie">
+            <div class="poster">Film Afişi</div>
+            <h3>The Mill</h3>
+            <p>⭐ 6.2 • 2023</p>
+        </div>
+
+        <div class="movie">
+            <div class="poster">Film Afişi</div>
+            <h3>Interstellar</h3>
+            <p>⭐ 8.7 • 2014</p>
+        </div>
+
+        <div class="movie">
+            <div class="poster">Film Afişi</div>
+            <h3>Inception</h3>
+            <p>⭐ 8.8 • 2010</p>
+        </div>
+
+        <div class="movie">
+            <div class="poster">Film Afişi</div>
+            <h3>Dune</h3>
+            <p>⭐ 8.0 • 2021</p>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <h2>🎭 Film Türleri</h2>
+
+    <p>
+        Aksiyon &nbsp; • &nbsp;
+        Korku &nbsp; • &nbsp;
+        Komedi &nbsp; • &nbsp;
+        Bilim Kurgu &nbsp; • &nbsp;
+        Dram &nbsp; • &nbsp;
+        Gerilim
+    </p>
+</section>
+
+<footer>
+    © 2026 FilmIportal
+</footer>
+
+</body>
+</html>
