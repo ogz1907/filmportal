@@ -4,136 +4,100 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Film Portal - Film Dünyası</title>
+<title>Film Portal - Film Dünyasını Keşfet</title>
 
 <style>
-
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: Arial, sans-serif;
-    background: #0d0d0d;
-    color: white;
+    background: #0b0b0f;
+    color: #ffffff;
 }
-
-/* HEADER */
 
 header {
-    background: #151515;
-    border-bottom: 1px solid #292929;
-    padding: 20px;
-}
-
-.header-inner {
-    max-width: 1100px;
-    margin: auto;
-
+    background: #111116;
+    border-bottom: 1px solid #25252d;
+    padding: 20px 7%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .logo {
-    font-size: 27px;
+    font-size: 25px;
     font-weight: bold;
-}
-
-.logo span {
     color: #e50914;
 }
 
 nav a {
-    color: #ccc;
+    color: #ddd;
     text-decoration: none;
-    margin-left: 22px;
+    margin-left: 25px;
 }
 
 nav a:hover {
     color: #e50914;
 }
 
-/* HERO */
-
 .hero {
     text-align: center;
-    padding: 80px 20px;
-
+    padding: 75px 20px 55px;
     background:
-        radial-gradient(
-            circle at center,
-            #292929 0%,
-            #111 55%,
-            #0d0d0d 100%
-        );
+        radial-gradient(circle at center, #321014 0%, #0b0b0f 55%);
 }
 
 .hero h1 {
-    font-size: 46px;
+    font-size: 45px;
     margin-bottom: 15px;
 }
 
 .hero p {
     color: #aaa;
     font-size: 18px;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
-/* SEARCH */
-
 .search-box {
+    display: flex;
     max-width: 650px;
     margin: auto;
-
-    display: flex;
-
-    background: #1c1c1c;
-    border-radius: 8px;
-    padding: 5px;
 }
 
 .search-box input {
     flex: 1;
-
-    background: transparent;
+    padding: 16px;
     border: none;
     outline: none;
-
-    color: white;
-
-    padding: 16px;
-
+    background: #ffffff;
+    color: #111;
     font-size: 16px;
+    border-radius: 8px 0 0 8px;
 }
 
 .search-box button {
+    border: none;
     background: #e50914;
     color: white;
-
-    border: none;
-    border-radius: 6px;
-
-    padding: 0 28px;
-
+    padding: 0 25px;
+    font-size: 16px;
     font-weight: bold;
-    font-size: 15px;
-
     cursor: pointer;
+    border-radius: 0 8px 8px 0;
 }
 
 .search-box button:hover {
     background: #b20710;
 }
 
-/* CONTENT */
-
 .container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 50px 20px;
+    width: 86%;
+    max-width: 1200px;
+    margin: 50px auto;
 }
 
 .section-title {
@@ -141,192 +105,104 @@ nav a:hover {
     margin-bottom: 25px;
 }
 
-/* MOVIES */
-
-.movies {
+.results {
     display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 22px;
 }
 
-.movie {
-    background: #181818;
-
-    border-radius: 10px;
-
-    overflow: hidden;
-
-    transition:
-        transform .2s,
-        box-shadow .2s;
-}
-
-.movie:hover {
-    transform: translateY(-7px);
-
-    box-shadow:
-        0 12px 30px rgba(0,0,0,.5);
-}
-
-.poster {
-    height: 310px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background:
-        linear-gradient(135deg,#222,#444);
-
-    color: #888;
-
-    font-size: 18px;
-}
-
-.movie-info {
-    padding: 18px;
-}
-
-.movie-info h3 {
-    font-size: 19px;
-    margin-bottom: 8px;
-}
-
-.movie-info p {
-    color: #999;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.rating {
-    margin-top: 12px;
-    color: #ffd700;
-}
-
-/* SEARCH RESULTS */
-
-#searchResults {
-    margin-top: 55px;
-}
-
-.search-status {
-    color: #999;
-    margin-bottom: 25px;
-}
-
-.search-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.result-card {
-    background: #181818;
-
-    border-radius: 10px;
-
+.card {
+    background: #15151b;
+    border: 1px solid #272731;
+    border-radius: 12px;
     padding: 22px;
-
-    border: 1px solid #292929;
-
-    transition: .2s;
+    transition: 0.25s;
 }
 
-.result-card:hover {
+.card:hover {
     transform: translateY(-5px);
-
     border-color: #e50914;
 }
 
-.result-card h3 {
+.card h3 {
+    font-size: 21px;
     margin-bottom: 10px;
 }
 
-.result-card p {
-    color: #999;
-
-    font-size: 14px;
-
-    line-height: 1.6;
+.description {
+    color: #aaa;
+    line-height: 1.5;
+    min-height: 65px;
 }
 
-.result-card a {
-    display: inline-block;
-
+.info {
     margin-top: 18px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
 
+.badge {
+    background: #24242d;
+    color: #ddd;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 20px;
     color: #e50914;
-
     text-decoration: none;
-
     font-weight: bold;
 }
 
-/* GENRES */
+.card a:hover {
+    text-decoration: underline;
+}
+
+.loading {
+    text-align: center;
+    color: #aaa;
+    padding: 30px;
+}
+
+.message {
+    background: #15151b;
+    border: 1px solid #272731;
+    padding: 25px;
+    border-radius: 10px;
+    color: #aaa;
+    text-align: center;
+}
 
 .genres {
     display: flex;
-
     flex-wrap: wrap;
-
     gap: 12px;
 }
 
 .genre {
-    background: #1c1c1c;
-
-    padding: 13px 21px;
-
-    border-radius: 25px;
-
-    color: #ccc;
-
-    cursor: pointer;
-
-    transition: .2s;
+    background: #17171d;
+    border: 1px solid #292933;
+    padding: 12px 18px;
+    border-radius: 8px;
+    color: #ddd;
 }
-
-.genre:hover {
-    background: #e50914;
-
-    color: white;
-}
-
-/* FOOTER */
 
 footer {
-    margin-top: 40px;
-
-    padding: 35px;
-
+    margin-top: 80px;
+    padding: 30px;
     text-align: center;
-
-    background: #151515;
-
-    color: #666;
+    background: #111116;
+    color: #777;
 }
 
-/* MOBILE */
+@media (max-width: 700px) {
 
-@media(max-width:800px) {
-
-    .movies {
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .search-grid {
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .header-inner {
+    header {
         flex-direction: column;
-
         gap: 15px;
     }
 
@@ -335,490 +211,472 @@ footer {
     }
 
     .hero h1 {
-        font-size: 34px;
-    }
-
-}
-
-@media(max-width:500px) {
-
-    .movies {
-        grid-template-columns: 1fr;
-    }
-
-    .search-grid {
-        grid-template-columns: 1fr;
+        font-size: 32px;
     }
 
     .search-box {
         flex-direction: column;
-
-        background: transparent;
+        gap: 10px;
     }
 
-    .search-box input {
-        background: #1c1c1c;
-
-        border-radius: 6px;
-
-        margin-bottom: 10px;
-    }
-
+    .search-box input,
     .search-box button {
-        height: 50px;
+        border-radius: 8px;
+        min-height: 50px;
     }
-
 }
-
 </style>
 </head>
 
-
 <body>
-
 
 <header>
 
-<div class="header-inner">
+    <div class="logo">🎬 Film Portal</div>
 
-<div class="logo">
-<span>Film</span> Portal
-</div>
-
-<nav>
-
-<a href="#">
-Ana Sayfa
-</a>
-
-<a href="#filmler">
-Filmler
-</a>
-
-<a href="#turler">
-Türler
-</a>
-
-</nav>
-
-</div>
+    <nav>
+        <a href="#">Ana Sayfa</a>
+        <a href="#filmler">Filmler</a>
+        <a href="#turler">Türler</a>
+    </nav>
 
 </header>
 
 
 <section class="hero">
 
-<h1>
-Film dünyasını keşfet 🎬
-</h1>
+    <h1>Film dünyasını keşfet 🎬</h1>
 
-<p>
-Filmleri keşfet, bilgilerini incele ve
-yasal izleme seçeneklerini keşfet.
-</p>
+    <p>
+        Filmleri ara, bilgilerini keşfet ve film dünyasına göz at.
+    </p>
 
+    <div class="search-box">
 
-<div class="search-box">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Film adı yazın..."
+        >
 
-<input
-id="searchInput"
-type="text"
-placeholder="Film adı yazın..."
-autocomplete="off"
->
+        <button onclick="searchMovies()">
+            Ara 🔎
+        </button>
 
-<button onclick="searchMovies()">
-Ara 🔎
-</button>
-
-</div>
+    </div>
 
 </section>
 
 
-<main class="container">
+<section class="container" id="filmler">
 
+    <h2 class="section-title">
+        Film Arama Sonuçları
+    </h2>
 
-<section id="filmler">
+    <div id="results" class="results">
 
-<h2 class="section-title">
-Popüler Filmler
-</h2>
+        <div class="message">
+            Yukarıdaki arama kutusundan bir film arayın.
+        </div>
 
-
-<div class="movies">
-
-
-<div class="movie">
-
-<div class="poster">
-🎬
-</div>
-
-<div class="movie-info">
-
-<h3>
-Interstellar
-</h3>
-
-<p>
-2014 • Bilim Kurgu
-</p>
-
-<div class="rating">
-⭐ 8.7
-</div>
-
-</div>
-
-</div>
-
-
-<div class="movie">
-
-<div class="poster">
-🎬
-</div>
-
-<div class="movie-info">
-
-<h3>
-Inception
-</h3>
-
-<p>
-2010 • Bilim Kurgu
-</p>
-
-<div class="rating">
-⭐ 8.8
-</div>
-
-</div>
-
-</div>
-
-
-<div class="movie">
-
-<div class="poster">
-🎬
-</div>
-
-<div class="movie-info">
-
-<h3>
-Dune
-</h3>
-
-<p>
-2021 • Bilim Kurgu
-</p>
-
-<div class="rating">
-⭐ 8.0
-</div>
-
-</div>
-
-</div>
-
-
-<div class="movie">
-
-<div class="poster">
-🎬
-</div>
-
-<div class="movie-info">
-
-<h3>
-The Mill
-</h3>
-
-<p>
-2023 • Gerilim
-</p>
-
-<div class="rating">
-⭐ 6.2
-</div>
-
-</div>
-
-</div>
-
-
-</div>
+    </div>
 
 </section>
 
 
-<section id="searchResults">
+<section class="container" id="turler">
 
-<h2 class="section-title">
-Film Arama
-</h2>
+    <h2 class="section-title">
+        Film Türleri
+    </h2>
 
-<p
-id="searchMessage"
-class="search-status"
->
-Film aramak için yukarıdaki kutuyu kullanın.
-</p>
+    <div class="genres">
 
-<div
-id="resultsGrid"
-class="search-grid"
->
-</div>
+        <div class="genre">🎬 Aksiyon</div>
+        <div class="genre">👻 Korku</div>
+        <div class="genre">😂 Komedi</div>
+        <div class="genre">🚀 Bilim Kurgu</div>
+        <div class="genre">🎭 Dram</div>
+        <div class="genre">😱 Gerilim</div>
+        <div class="genre">🗺️ Macera</div>
+        <div class="genre">🧙 Fantastik</div>
 
-</section>
-
-
-<section
-id="turler"
-style="margin-top:55px;"
->
-
-<h2 class="section-title">
-Film Türleri
-</h2>
-
-
-<div class="genres">
-
-<div class="genre">
-Aksiyon
-</div>
-
-<div class="genre">
-Korku
-</div>
-
-<div class="genre">
-Komedi
-</div>
-
-<div class="genre">
-Bilim Kurgu
-</div>
-
-<div class="genre">
-Dram
-</div>
-
-<div class="genre">
-Gerilim
-</div>
-
-<div class="genre">
-Macera
-</div>
-
-<div class="genre">
-Fantastik
-</div>
-
-</div>
+    </div>
 
 </section>
-
-
-</main>
 
 
 <footer>
 
-© 2026 Film Portal
-
-<br><br>
-
-Film keşif ve bilgilendirme platformu
+    © 2026 Film Portal
+    <br><br>
+    Film bilgileri Wikidata üzerinden alınmaktadır.
 
 </footer>
 
 
 <script>
 
+const API = "https://www.wikidata.org/w/api.php";
+
+
+function escapeHTML(text) {
+
+    if (!text) return "";
+
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
 async function searchMovies() {
 
     const input =
-        document
-        .getElementById("searchInput")
-        .value
-        .trim();
+        document.getElementById("searchInput");
 
-    const message =
-        document
-        .getElementById("searchMessage");
+    const results =
+        document.getElementById("results");
 
-    const grid =
-        document
-        .getElementById("resultsGrid");
+    const search =
+        input.value.trim();
 
+    if (!search) {
 
-    if (!input) {
-
-        message.textContent =
-            "Lütfen bir film adı yazın.";
-
-        grid.innerHTML = "";
+        results.innerHTML = `
+            <div class="message">
+                Lütfen bir film adı yazın.
+            </div>
+        `;
 
         return;
     }
 
 
-    message.textContent =
-        "🔎 Film aranıyor...";
-
-    grid.innerHTML = "";
+    results.innerHTML = `
+        <div class="loading">
+            🔎 Filmler aranıyor...
+        </div>
+    `;
 
 
     try {
 
-        const url =
-            "https://www.wikidata.org/w/api.php" +
+        const searchURL =
+            API +
             "?action=wbsearchentities" +
             "&search=" +
-            encodeURIComponent(input) +
+            encodeURIComponent(search) +
             "&language=tr" +
             "&uselang=tr" +
             "&format=json" +
-            "&limit=12" +
+            "&limit=10" +
             "&origin=*";
 
 
         const response =
-            await fetch(url);
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Sunucu hatası"
-            );
-
-        }
-
+            await fetch(searchURL);
 
         const data =
             await response.json();
 
 
-        if (
-            !data.search ||
-            data.search.length === 0
-        ) {
+        if (!data.search || data.search.length === 0) {
 
-            message.textContent =
-                "😕 Film bulunamadı.";
+            results.innerHTML = `
+                <div class="message">
+                    Film bulunamadı.
+                </div>
+            `;
 
             return;
         }
 
 
-        message.textContent =
-            "🎬 " +
-            data.search.length +
-            " sonuç bulundu.";
+        const ids =
+            data.search
+                .map(item => item.id)
+                .join("|");
 
 
-        data.search.forEach(function(item) {
+        const entityURL =
+            API +
+            "?action=wbgetentities" +
+            "&ids=" +
+            ids +
+            "&languages=tr|en" +
+            "&props=claims|labels|descriptions" +
+            "&format=json" +
+            "&origin=*";
 
 
-            const card =
-                document.createElement("div");
+        const entityResponse =
+            await fetch(entityURL);
+
+        const entityData =
+            await entityResponse.json();
 
 
-            card.className =
-                "result-card";
+        let movies = [];
 
 
-            const title =
-                item.label ||
-                "İsimsiz";
+        for (const item of data.search) {
+
+            const entity =
+                entityData.entities[item.id];
+
+            if (!entity) continue;
+
+
+            const claims =
+                entity.claims || {};
+
+
+            /*
+             P31 = instance of
+             Q11424 = film
+            */
+
+            const instanceOf =
+                claims.P31 || [];
+
+
+            const isFilm =
+                instanceOf.some(statement => {
+
+                    const id =
+                        statement
+                        ?.mainsnak
+                        ?.datavalue
+                        ?.value
+                        ?.id;
+
+                    return id === "Q11424";
+                });
+
+
+            if (!isFilm) continue;
+
+
+            let year = "";
+
+            if (claims.P577 && claims.P577.length > 0) {
+
+                const time =
+                    claims.P577[0]
+                    ?.mainsnak
+                    ?.datavalue
+                    ?.value
+                    ?.time;
+
+                if (time) {
+
+                    const match =
+                        time.match(/(\d{4})/);
+
+                    if (match) {
+                        year = match[1];
+                    }
+
+                }
+
+            }
+
+
+            let genres = [];
+
+
+            if (claims.P136) {
+
+                genres =
+                    claims.P136
+                    .slice(0, 3)
+                    .map(statement => {
+
+                        const id =
+                            statement
+                            ?.mainsnak
+                            ?.datavalue
+                            ?.value
+                            ?.id;
+
+                        if (!id) return null;
+
+
+                        const linked =
+                            entityData.entities[id];
+
+
+                        return linked
+                            ?.labels
+                            ?.tr
+                            ?.value
+                            ||
+                            linked
+                            ?.labels
+                            ?.en
+                            ?.value
+                            ||
+                            null;
+
+                    })
+                    .filter(Boolean);
+
+            }
+
+
+            const label =
+                entity
+                ?.labels
+                ?.tr
+                ?.value
+                ||
+                entity
+                ?.labels
+                ?.en
+                ?.value
+                ||
+                item.label;
 
 
             const description =
-                item.description ||
-                "Bu film hakkında açıklama bulunamadı.";
+                entity
+                ?.descriptions
+                ?.tr
+                ?.value
+                ||
+                entity
+                ?.descriptions
+                ?.en
+                ?.value
+                ||
+                "Bu film hakkında henüz açıklama bulunmuyor.";
 
 
-            card.innerHTML = `
+            movies.push({
 
-                <h3>
-                    ${escapeHTML(title)}
-                </h3>
+                id: item.id,
 
-                <p>
-                    ${escapeHTML(description)}
-                </p>
+                title: label,
 
-                <a
-                    href="${item.concepturi}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Detayları görüntüle →
-                </a>
+                description: description,
 
+                year: year,
+
+                genres: genres
+
+            });
+
+        }
+
+
+        if (movies.length === 0) {
+
+            results.innerHTML = `
+                <div class="message">
+                    Aradığınız isimle eşleşen film bulunamadı.
+                    <br><br>
+                    Farklı bir film adı deneyin.
+                </div>
             `;
 
+            return;
+        }
 
-            grid.appendChild(card);
 
-        });
+        results.innerHTML =
+            movies.map(movie => `
+
+                <div class="card">
+
+                    <h3>
+                        ${escapeHTML(movie.title)}
+                    </h3>
+
+                    <div class="description">
+                        ${escapeHTML(movie.description)}
+                    </div>
+
+
+                    <div class="info">
+
+                        ${
+                            movie.year
+                            ?
+                            `<span class="badge">
+                                📅 ${movie.year}
+                            </span>`
+                            :
+                            ""
+                        }
+
+
+                        ${
+                            movie.genres.length
+                            ?
+                            movie.genres.map(genre => `
+                                <span class="badge">
+                                    🎭 ${escapeHTML(genre)}
+                                </span>
+                            `).join("")
+                            :
+                            ""
+                        }
+
+                    </div>
+
+
+                    <a
+                        href="https://www.wikidata.org/wiki/${movie.id}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Film bilgilerini gör →
+                    </a>
+
+                </div>
+
+            `).join("");
 
 
     } catch (error) {
 
         console.error(error);
 
+        results.innerHTML = `
+            <div class="message">
 
-        message.textContent =
-            "⚠️ Arama sırasında bir hata oluştu.";
+                Bir bağlantı sorunu oluştu.
 
+                <br><br>
+
+                Lütfen birkaç saniye sonra tekrar deneyin.
+
+            </div>
+        `;
 
     }
 
 }
 
 
-function escapeHTML(text) {
-
-    const div =
-        document.createElement("div");
-
-    div.textContent =
-        text;
-
-    return div.innerHTML;
-
-}
-
-
-/* ENTER TUŞU */
-
 document
-.getElementById("searchInput")
-.addEventListener(
-    "keydown",
-    function(event) {
+    .getElementById("searchInput")
+    .addEventListener("keydown", function(event) {
 
-        if (
-            event.key === "Enter"
-        ) {
+        if (event.key === "Enter") {
 
             searchMovies();
 
         }
 
-    }
-);
+    });
 
 </script>
-
 
 </body>
 </html>
