@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Film Portal - Film Dünyasını Keşfet</title>
 
 <style>
+
 * {
     margin: 0;
     padding: 0;
@@ -46,8 +48,13 @@ nav a:hover {
 
 .hero {
     text-align: center;
-    padding: 75px 20px 55px;
-    background: radial-gradient(circle at center, #321014 0%, #0b0b0f 55%);
+    padding: 80px 20px 60px;
+    background:
+        radial-gradient(
+            circle at center,
+            #321014 0%,
+            #0b0b0f 60%
+        );
 }
 
 .hero h1 {
@@ -69,7 +76,7 @@ nav a:hover {
 
 .search-box input {
     flex: 1;
-    padding: 16px;
+    padding: 17px;
     border: none;
     outline: none;
     font-size: 16px;
@@ -104,15 +111,16 @@ nav a:hover {
 
 .results {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
     gap: 22px;
 }
 
 .card {
     background: #15151b;
     border: 1px solid #292932;
-    border-radius: 12px;
-    padding: 22px;
+    border-radius: 14px;
+    padding: 23px;
     transition: 0.25s;
 }
 
@@ -122,13 +130,13 @@ nav a:hover {
 }
 
 .card h3 {
-    font-size: 21px;
-    margin-bottom: 10px;
+    font-size: 22px;
+    margin-bottom: 12px;
 }
 
 .description {
     color: #aaa;
-    line-height: 1.5;
+    line-height: 1.6;
     min-height: 65px;
 }
 
@@ -142,21 +150,26 @@ nav a:hover {
 .badge {
     background: #24242d;
     color: #ddd;
-    padding: 6px 10px;
+    padding: 7px 10px;
     border-radius: 6px;
     font-size: 13px;
 }
 
-.card a {
+.detail-button {
     display: inline-block;
-    margin-top: 20px;
-    color: #e50914;
-    text-decoration: none;
+    margin-top: 22px;
+    padding: 11px 15px;
+    background: #e50914;
+    color: white;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
     font-weight: bold;
+    text-decoration: none;
 }
 
-.card a:hover {
-    text-decoration: underline;
+.detail-button:hover {
+    background: #b20710;
 }
 
 .message {
@@ -176,6 +189,81 @@ nav a:hover {
     grid-column: 1 / -1;
 }
 
+
+/* =========================
+   DETAY ALANI
+========================= */
+
+#detailSection {
+    display: none;
+}
+
+.detail-box {
+    background: #15151b;
+    border: 1px solid #292932;
+    border-radius: 15px;
+    padding: 35px;
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.detail-title {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.detail-original {
+    color: #888;
+    margin-bottom: 25px;
+}
+
+.detail-description {
+    color: #bbb;
+    line-height: 1.8;
+    font-size: 16px;
+    margin: 25px 0;
+}
+
+.detail-row {
+    margin: 14px 0;
+    color: #ddd;
+}
+
+.detail-label {
+    color: #e50914;
+    font-weight: bold;
+}
+
+.genre-list {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.close-button {
+    background: #292932;
+    color: white;
+    border: none;
+    padding: 11px 16px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background: #e50914;
+}
+
+
+/* =========================
+   TÜRLER
+========================= */
+
 .genres {
     display: flex;
     flex-wrap: wrap;
@@ -190,6 +278,11 @@ nav a:hover {
     color: #ddd;
 }
 
+
+/* =========================
+   FOOTER
+========================= */
+
 footer {
     margin-top: 80px;
     padding: 30px;
@@ -197,6 +290,11 @@ footer {
     background: #111116;
     color: #777;
 }
+
+
+/* =========================
+   MOBİL
+========================= */
 
 @media (max-width: 700px) {
 
@@ -223,28 +321,63 @@ footer {
         border-radius: 8px;
         min-height: 50px;
     }
+
+    .detail-header {
+        flex-direction: column;
+    }
+
+    .detail-title {
+        font-size: 30px;
+    }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
 
-    <div class="logo">🎬 Film Portal</div>
+    <div class="logo">
+        🎬 Film Portal
+    </div>
 
     <nav>
-        <a href="#">Ana Sayfa</a>
-        <a href="#filmler">Filmler</a>
-        <a href="#turler">Türler</a>
+
+        <a href="#">
+            Ana Sayfa
+        </a>
+
+        <a href="#filmler">
+            Filmler
+        </a>
+
+        <a href="#turler">
+            Türler
+        </a>
+
     </nav>
 
 </header>
 
 
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
 
-    <h1>Film dünyasını keşfet 🎬</h1>
+    <h1>
+        Film dünyasını keşfet 🎬
+    </h1>
 
     <p>
         Filmleri ara, bilgilerini keşfet ve film dünyasına göz at.
@@ -267,16 +400,29 @@ footer {
 </section>
 
 
-<section class="container" id="filmler">
+<!-- =========================
+     FİLM SONUÇLARI
+========================= -->
+
+<section
+    class="container"
+    id="filmler"
+>
 
     <h2 class="section-title">
         Film Arama Sonuçları
     </h2>
 
-    <div id="results" class="results">
+    <div
+        id="results"
+        class="results"
+    >
 
         <div class="message">
-            Yukarıdaki arama kutusundan bir film arayın.
+
+            Yukarıdaki arama kutusundan
+            bir film arayın.
+
         </div>
 
     </div>
@@ -284,7 +430,33 @@ footer {
 </section>
 
 
-<section class="container" id="turler">
+<!-- =========================
+     FİLM DETAYI
+========================= -->
+
+<section
+    class="container"
+    id="detailSection"
+>
+
+    <div
+        id="detailBox"
+        class="detail-box"
+    >
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TÜRLER
+========================= -->
+
+<section
+    class="container"
+    id="turler"
+>
 
     <h2 class="section-title">
         Film Türleri
@@ -292,24 +464,53 @@ footer {
 
     <div class="genres">
 
-        <div class="genre">🎬 Aksiyon</div>
-        <div class="genre">👻 Korku</div>
-        <div class="genre">😂 Komedi</div>
-        <div class="genre">🚀 Bilim Kurgu</div>
-        <div class="genre">🎭 Dram</div>
-        <div class="genre">😱 Gerilim</div>
-        <div class="genre">🗺️ Macera</div>
-        <div class="genre">🧙 Fantastik</div>
+        <div class="genre">
+            🎬 Aksiyon
+        </div>
+
+        <div class="genre">
+            👻 Korku
+        </div>
+
+        <div class="genre">
+            😂 Komedi
+        </div>
+
+        <div class="genre">
+            🚀 Bilim Kurgu
+        </div>
+
+        <div class="genre">
+            🎭 Dram
+        </div>
+
+        <div class="genre">
+            😱 Gerilim
+        </div>
+
+        <div class="genre">
+            🗺️ Macera
+        </div>
+
+        <div class="genre">
+            🧙 Fantastik
+        </div>
 
     </div>
 
 </section>
 
 
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
     © 2026 Film Portal
+
     <br><br>
+
     Film bilgileri Wikidata üzerinden alınmaktadır.
 
 </footer>
@@ -317,31 +518,190 @@ footer {
 
 <script>
 
-const API = "https://www.wikidata.org/w/api.php";
+
+/* =====================================
+   WIKIDATA API
+===================================== */
+
+const API =
+    "https://www.wikidata.org/w/api.php";
 
 
-// HTML güvenliği
+/* =====================================
+   HTML GÜVENLİĞİ
+===================================== */
+
 function escapeHTML(text) {
 
-    if (!text) return "";
+    if (!text) {
+        return "";
+    }
 
-    return text
+    return String(text)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+
 }
 
 
-// Film ara
+/* =====================================
+   WIKIDATA'DAN VERİ AL
+===================================== */
+
+async function getEntities(ids) {
+
+    if (!ids || ids.length === 0) {
+        return {};
+    }
+
+    const url =
+        API +
+        "?action=wbgetentities" +
+        "&ids=" +
+        ids.join("|") +
+        "&languages=tr|en" +
+        "&props=claims|labels|descriptions" +
+        "&format=json" +
+        "&origin=*";
+
+    const response =
+        await fetch(url);
+
+    const data =
+        await response.json();
+
+    return data.entities || {};
+
+}
+
+
+/* =====================================
+   LABEL AL
+===================================== */
+
+function getLabel(entity) {
+
+    return (
+        entity?.labels?.tr?.value ||
+        entity?.labels?.en?.value ||
+        ""
+    );
+
+}
+
+
+/* =====================================
+   CLAIM'DEN WIKIDATA ID AL
+===================================== */
+
+function getClaimIds(
+    claims,
+    property
+) {
+
+    if (!claims[property]) {
+        return [];
+    }
+
+    return claims[property]
+        .map(statement => {
+
+            return statement
+                ?.mainsnak
+                ?.datavalue
+                ?.value
+                ?.id || null;
+
+        })
+        .filter(Boolean);
+
+}
+
+
+/* =====================================
+   YIL AL
+===================================== */
+
+function getYear(claims) {
+
+    if (!claims.P577) {
+        return "";
+    }
+
+    for (
+        const statement
+        of claims.P577
+    ) {
+
+        const time =
+            statement
+            ?.mainsnak
+            ?.datavalue
+            ?.value
+            ?.time;
+
+        if (!time) {
+            continue;
+        }
+
+        const match =
+            time.match(/(\d{4})/);
+
+        if (match) {
+            return match[1];
+        }
+
+    }
+
+    return "";
+
+}
+
+
+/* =====================================
+   FİLM Mİ?
+===================================== */
+
+function isFilm(entity) {
+
+    const claims =
+        entity?.claims || {};
+
+    const instances =
+        getClaimIds(
+            claims,
+            "P31"
+        );
+
+    /*
+       Q11424 = film
+    */
+
+    return instances.includes(
+        "Q11424"
+    );
+
+}
+
+
+/* =====================================
+   FİLM ARA
+===================================== */
+
 async function searchMovies() {
 
     const input =
-        document.getElementById("searchInput");
+        document.getElementById(
+            "searchInput"
+        );
 
     const results =
-        document.getElementById("results");
+        document.getElementById(
+            "results"
+        );
 
     const search =
         input.value.trim();
@@ -356,6 +716,7 @@ async function searchMovies() {
         `;
 
         return;
+
     }
 
 
@@ -368,7 +729,10 @@ async function searchMovies() {
 
     try {
 
-        // Wikidata'da arama yap
+        /* =========================
+           ARAMA
+        ========================= */
+
         const searchURL =
             API +
             "?action=wbsearchentities" +
@@ -384,11 +748,15 @@ async function searchMovies() {
         const response =
             await fetch(searchURL);
 
+
         const data =
             await response.json();
 
 
-        if (!data.search || data.search.length === 0) {
+        if (
+            !data.search ||
+            data.search.length === 0
+        ) {
 
             results.innerHTML = `
                 <div class="message">
@@ -397,212 +765,61 @@ async function searchMovies() {
             `;
 
             return;
+
         }
 
 
-        // Bulunan Wikidata ID'lerini al
+        /* =========================
+           ID'LER
+        ========================= */
+
         const ids =
             data.search
-                .map(item => item.id)
-                .join("|");
+                .map(item => item.id);
 
 
-        // Ayrıntılı bilgileri getir
-        const entityURL =
-            API +
-            "?action=wbgetentities" +
-            "&ids=" +
-            ids +
-            "&languages=tr|en" +
-            "&props=claims|labels|descriptions" +
-            "&format=json" +
-            "&origin=*";
+        /* =========================
+           DETAYLI VERİ
+        ========================= */
 
-
-        const entityResponse =
-            await fetch(entityURL);
-
-        const entityData =
-            await entityResponse.json();
+        const entities =
+            await getEntities(ids);
 
 
         let movies = [];
 
 
-        for (const item of data.search) {
+        for (
+            const item
+            of data.search
+        ) {
 
             const entity =
-                entityData.entities[item.id];
+                entities[item.id];
 
-            if (!entity) continue;
+
+            if (!entity) {
+                continue;
+            }
+
+
+            /*
+               SADECE FİLM
+            */
+
+            if (!isFilm(entity)) {
+                continue;
+            }
 
 
             const claims =
                 entity.claims || {};
 
 
-            /*
-              P31 = instance of
-
-              Q11424 = film
-            */
-
-            const instanceOf =
-                claims.P31 || [];
-
-
-            // Sadece doğrudan film olanları seç
-            const isFilm =
-                instanceOf.some(statement => {
-
-                    const value =
-                        statement
-                        ?.mainsnak
-                        ?.datavalue
-                        ?.value;
-
-                    if (!value) return false;
-
-                    return value.id === "Q11424";
-                });
-
-
-            if (!isFilm) continue;
-
-
-            // Yapım / yayın tarihi
-            let year = "";
-
-
-            if (claims.P577) {
-
-                for (const statement of claims.P577) {
-
-                    const time =
-                        statement
-                        ?.mainsnak
-                        ?.datavalue
-                        ?.value
-                        ?.time;
-
-
-                    if (time) {
-
-                        const match =
-                            time.match(/(\d{4})/);
-
-
-                        if (match) {
-
-                            year = match[1];
-
-                            break;
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-
-            // Film türleri
-            let genres = [];
-
-
-            if (claims.P136) {
-
-                for (
-                    const statement
-                    of claims.P136.slice(0, 4)
-                ) {
-
-                    const genreId =
-                        statement
-                        ?.mainsnak
-                        ?.datavalue
-                        ?.value
-                        ?.id;
-
-
-                    if (!genreId) continue;
-
-
-                    /*
-                      Türün adını ayrıca Wikidata'dan
-                      almamız gerekiyor.
-                    */
-
-                    try {
-
-                        const genreURL =
-                            API +
-                            "?action=wbgetentities" +
-                            "&ids=" +
-                            genreId +
-                            "&languages=tr|en" +
-                            "&props=labels" +
-                            "&format=json" +
-                            "&origin=*";
-
-
-                        const genreResponse =
-                            await fetch(genreURL);
-
-
-                        const genreData =
-                            await genreResponse.json();
-
-
-                        const genreEntity =
-                            genreData.entities[genreId];
-
-
-                        const genreName =
-                            genreEntity
-                            ?.labels
-                            ?.tr
-                            ?.value
-                            ||
-                            genreEntity
-                            ?.labels
-                            ?.en
-                            ?.value;
-
-
-                        if (genreName) {
-
-                            genres.push(genreName);
-
-                        }
-
-                    } catch (error) {
-
-                        console.log(
-                            "Tür alınamadı:",
-                            error
-                        );
-
-                    }
-
-                }
-
-            }
-
-
             const title =
-                entity
-                ?.labels
-                ?.tr
-                ?.value
-                ||
-                entity
-                ?.labels
-                ?.en
-                ?.value
-                ||
-                item.label;
+                getLabel(entity) ||
+                item.label ||
+                "Bilinmeyen film";
 
 
             const description =
@@ -619,6 +836,10 @@ async function searchMovies() {
                 "Bu film hakkında açıklama bulunmuyor.";
 
 
+            const year =
+                getYear(claims);
+
+
             movies.push({
 
                 id: item.id,
@@ -627,46 +848,59 @@ async function searchMovies() {
 
                 description: description,
 
-                year: year,
-
-                genres: genres
+                year: year
 
             });
 
         }
 
 
-        // Sonuç yoksa
-        if (movies.length === 0) {
+        /* =========================
+           SONUÇ YOK
+        ========================= */
+
+        if (
+            movies.length === 0
+        ) {
 
             results.innerHTML = `
                 <div class="message">
-                    🎬 Bu aramayla eşleşen film bulunamadı.
+
+                    🎬 Film bulunamadı.
+
                     <br><br>
-                    Örneğin <strong>Interstellar</strong>,
-                    <strong>Inception</strong> veya
-                    <strong>Dune</strong> arayabilirsiniz.
+
+                    Başka bir film adı deneyin.
+
                 </div>
             `;
 
             return;
+
         }
 
 
-        // Sonuçları göster
+        /* =========================
+           SONUÇLARI GÖSTER
+        ========================= */
+
         results.innerHTML =
             movies.map(movie => `
 
                 <div class="card">
 
                     <h3>
-                        🎬 ${escapeHTML(movie.title)}
+                        🎬
+                        ${escapeHTML(
+                            movie.title
+                        )}
                     </h3>
-
 
                     <div class="description">
 
-                        ${escapeHTML(movie.description)}
+                        ${escapeHTML(
+                            movie.description
+                        )}
 
                     </div>
 
@@ -685,41 +919,37 @@ async function searchMovies() {
                             ""
                         }
 
-
-                        ${
-                            movie.genres.length
-                            ?
-                            movie.genres
-                            .map(genre => `
-                                <span class="badge">
-                                    🎭 ${escapeHTML(genre)}
-                                </span>
-                            `)
-                            .join("")
-                            :
-                            ""
-                        }
-
                     </div>
 
 
-                    <a
-                        href="https://www.wikidata.org/entity/${movie.id}"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <button
+                        class="detail-button"
+                        onclick="showMovieDetail('${movie.id}')"
                     >
+
                         Detayları görüntüle →
-                    </a>
+
+                    </button>
 
                 </div>
 
             `).join("");
 
 
+        /*
+           Arama sonuçlarının olduğu bölüme git
+        */
+
+        document
+            .getElementById("filmler")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+
     } catch (error) {
 
         console.error(error);
-
 
         results.innerHTML = `
             <div class="message">
@@ -728,7 +958,7 @@ async function searchMovies() {
 
                 <br><br>
 
-                Birkaç saniye sonra tekrar deneyin.
+                Lütfen tekrar deneyin.
 
             </div>
         `;
@@ -738,14 +968,418 @@ async function searchMovies() {
 }
 
 
-// Enter tuşuyla arama
+/* =====================================
+   FİLM DETAYI
+===================================== */
+
+async function showMovieDetail(id) {
+
+    const section =
+        document.getElementById(
+            "detailSection"
+        );
+
+    const box =
+        document.getElementById(
+            "detailBox"
+        );
+
+
+    section.style.display =
+        "block";
+
+
+    box.innerHTML = `
+        <div class="loading">
+            🎬 Film bilgileri hazırlanıyor...
+        </div>
+    `;
+
+
+    section.scrollIntoView({
+        behavior: "smooth"
+    });
+
+
+    try {
+
+        /* =========================
+           ANA FİLMİ AL
+        ========================= */
+
+        const entities =
+            await getEntities([id]);
+
+
+        const movie =
+            entities[id];
+
+
+        if (!movie) {
+
+            box.innerHTML = `
+                <div class="message">
+                    Film bilgileri alınamadı.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        const claims =
+            movie.claims || {};
+
+
+        /* =========================
+           TÜR ID'LERİ
+        ========================= */
+
+        const genreIds =
+            getClaimIds(
+                claims,
+                "P136"
+            ).slice(0, 6);
+
+
+        /* =========================
+           YÖNETMEN ID'LERİ
+        ========================= */
+
+        const directorIds =
+            getClaimIds(
+                claims,
+                "P57"
+            ).slice(0, 5);
+
+
+        /* =========================
+           OYUNCU ID'LERİ
+        ========================= */
+
+        const actorIds =
+            getClaimIds(
+                claims,
+                "P161"
+            ).slice(0, 8);
+
+
+        /* =========================
+           HEPSİNİ TEK SEFERDE AL
+        ========================= */
+
+        const relatedIds = [
+            ...genreIds,
+            ...directorIds,
+            ...actorIds
+        ];
+
+
+        const related =
+            await getEntities(
+                relatedIds
+            );
+
+
+        /* =========================
+           FİLM BİLGİLERİ
+        ========================= */
+
+        const title =
+            getLabel(movie) ||
+            "Bilinmeyen film";
+
+
+        const description =
+            movie
+            ?.descriptions
+            ?.tr
+            ?.value
+            ||
+            movie
+            ?.descriptions
+            ?.en
+            ?.value
+            ||
+            "Bu film hakkında açıklama bulunmuyor.";
+
+
+        const year =
+            getYear(claims);
+
+
+        /* =========================
+           TÜRLER
+        ========================= */
+
+        const genres =
+            genreIds
+                .map(
+                    genreId =>
+                        getLabel(
+                            related[genreId]
+                        )
+                )
+                .filter(Boolean);
+
+
+        /* =========================
+           YÖNETMENLER
+        ========================= */
+
+        const directors =
+            directorIds
+                .map(
+                    directorId =>
+                        getLabel(
+                            related[directorId]
+                        )
+                )
+                .filter(Boolean);
+
+
+        /* =========================
+           OYUNCULAR
+        ========================= */
+
+        const actors =
+            actorIds
+                .map(
+                    actorId =>
+                        getLabel(
+                            related[actorId]
+                        )
+                )
+                .filter(Boolean);
+
+
+        /* =========================
+           DETAY SAYFASINI OLUŞTUR
+        ========================= */
+
+        box.innerHTML = `
+
+            <div class="detail-header">
+
+                <div>
+
+                    <div class="detail-title">
+
+                        ${escapeHTML(
+                            title
+                        )}
+
+                    </div>
+
+
+                    ${
+                        year
+                        ?
+                        `
+                        <div class="detail-original">
+
+                            📅 ${year}
+
+                        </div>
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+
+
+                <button
+                    class="close-button"
+                    onclick="closeDetail()"
+                >
+
+                    ✕ Kapat
+
+                </button>
+
+            </div>
+
+
+            <div class="detail-description">
+
+                ${escapeHTML(
+                    description
+                )}
+
+            </div>
+
+
+            ${
+                genres.length
+                ?
+                `
+                <div class="detail-row">
+
+                    <span class="detail-label">
+                        🎭 Tür:
+                    </span>
+
+                    <div class="genre-list">
+
+                        ${
+                            genres
+                            .map(
+                                genre => `
+                                    <span class="badge">
+                                        ${escapeHTML(
+                                            genre
+                                        )}
+                                    </span>
+                                `
+                            )
+                            .join("")
+                        }
+
+                    </div>
+
+                </div>
+                `
+                :
+                ""
+            }
+
+
+            ${
+                directors.length
+                ?
+                `
+                <div class="detail-row">
+
+                    <span class="detail-label">
+                        🎬 Yönetmen:
+                    </span>
+
+                    ${escapeHTML(
+                        directors.join(
+                            ", "
+                        )
+                    )}
+
+                </div>
+                `
+                :
+                ""
+            }
+
+
+            ${
+                actors.length
+                ?
+                `
+                <div class="detail-row">
+
+                    <span class="detail-label">
+                        ⭐ Oyuncular:
+                    </span>
+
+                    ${escapeHTML(
+                        actors.join(
+                            ", "
+                        )
+                    )}
+
+                </div>
+                `
+                :
+                ""
+            }
+
+
+            <br>
+
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+                    Wikidata:
+                </span>
+
+                <a
+                    href="https://www.wikidata.org/wiki/${id}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="
+                        color:#e50914;
+                        margin-left:8px;
+                    "
+                >
+                    Kaynağı görüntüle
+                </a>
+
+            </div>
+
+        `;
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        box.innerHTML = `
+
+            <div class="message">
+
+                ❌ Film detayları alınamadı.
+
+                <br><br>
+
+                Lütfen tekrar deneyin.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================
+   DETAYI KAPAT
+===================================== */
+
+function closeDetail() {
+
+    const section =
+        document.getElementById(
+            "detailSection"
+        );
+
+    section.style.display =
+        "none";
+
+
+    document
+        .getElementById("filmler")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+/* =====================================
+   ENTER TUŞU
+===================================== */
+
 document
-    .getElementById("searchInput")
+    .getElementById(
+        "searchInput"
+    )
     .addEventListener(
         "keydown",
         function(event) {
 
-            if (event.key === "Enter") {
+            if (
+                event.key === "Enter"
+            ) {
 
                 searchMovies();
 
