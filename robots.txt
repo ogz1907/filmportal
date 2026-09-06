@@ -1,1 +1,4 @@
+User-agent: *
+Allow: /
 
+Sitemap: https://ogz1907.github.io/filmportal/sitemap.xml
