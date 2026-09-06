@@ -16,12 +16,12 @@
 body {
     font-family: Arial, sans-serif;
     background: #0b0b0f;
-    color: #ffffff;
+    color: white;
 }
 
 header {
     background: #111116;
-    border-bottom: 1px solid #25252d;
+    border-bottom: 1px solid #292932;
     padding: 20px 7%;
     display: flex;
     justify-content: space-between;
@@ -47,8 +47,7 @@ nav a:hover {
 .hero {
     text-align: center;
     padding: 75px 20px 55px;
-    background:
-        radial-gradient(circle at center, #321014 0%, #0b0b0f 55%);
+    background: radial-gradient(circle at center, #321014 0%, #0b0b0f 55%);
 }
 
 .hero h1 {
@@ -73,8 +72,6 @@ nav a:hover {
     padding: 16px;
     border: none;
     outline: none;
-    background: #ffffff;
-    color: #111;
     font-size: 16px;
     border-radius: 8px 0 0 8px;
 }
@@ -107,13 +104,13 @@ nav a:hover {
 
 .results {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 22px;
 }
 
 .card {
     background: #15151b;
-    border: 1px solid #272731;
+    border: 1px solid #292932;
     border-radius: 12px;
     padding: 22px;
     transition: 0.25s;
@@ -138,7 +135,7 @@ nav a:hover {
 .info {
     margin-top: 18px;
     display: flex;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
 }
 
@@ -162,19 +159,21 @@ nav a:hover {
     text-decoration: underline;
 }
 
-.loading {
-    text-align: center;
-    color: #aaa;
-    padding: 30px;
-}
-
 .message {
     background: #15151b;
-    border: 1px solid #272731;
+    border: 1px solid #292932;
     padding: 25px;
     border-radius: 10px;
     color: #aaa;
     text-align: center;
+    grid-column: 1 / -1;
+}
+
+.loading {
+    text-align: center;
+    color: #aaa;
+    padding: 30px;
+    grid-column: 1 / -1;
 }
 
 .genres {
@@ -321,6 +320,7 @@ footer {
 const API = "https://www.wikidata.org/w/api.php";
 
 
+// HTML güvenliği
 function escapeHTML(text) {
 
     if (!text) return "";
@@ -334,6 +334,7 @@ function escapeHTML(text) {
 }
 
 
+// Film ara
 async function searchMovies() {
 
     const input =
@@ -344,6 +345,7 @@ async function searchMovies() {
 
     const search =
         input.value.trim();
+
 
     if (!search) {
 
@@ -366,6 +368,7 @@ async function searchMovies() {
 
     try {
 
+        // Wikidata'da arama yap
         const searchURL =
             API +
             "?action=wbsearchentities" +
@@ -374,7 +377,7 @@ async function searchMovies() {
             "&language=tr" +
             "&uselang=tr" +
             "&format=json" +
-            "&limit=10" +
+            "&limit=20" +
             "&origin=*";
 
 
@@ -397,12 +400,14 @@ async function searchMovies() {
         }
 
 
+        // Bulunan Wikidata ID'lerini al
         const ids =
             data.search
                 .map(item => item.id)
                 .join("|");
 
 
+        // Ayrıntılı bilgileri getir
         const entityURL =
             API +
             "?action=wbgetentities" +
@@ -437,49 +442,64 @@ async function searchMovies() {
 
 
             /*
-             P31 = instance of
-             Q11424 = film
+              P31 = instance of
+
+              Q11424 = film
             */
 
             const instanceOf =
                 claims.P31 || [];
 
 
+            // Sadece doğrudan film olanları seç
             const isFilm =
                 instanceOf.some(statement => {
 
-                    const id =
+                    const value =
                         statement
                         ?.mainsnak
                         ?.datavalue
-                        ?.value
-                        ?.id;
+                        ?.value;
 
-                    return id === "Q11424";
+                    if (!value) return false;
+
+                    return value.id === "Q11424";
                 });
 
 
             if (!isFilm) continue;
 
 
+            // Yapım / yayın tarihi
             let year = "";
 
-            if (claims.P577 && claims.P577.length > 0) {
 
-                const time =
-                    claims.P577[0]
-                    ?.mainsnak
-                    ?.datavalue
-                    ?.value
-                    ?.time;
+            if (claims.P577) {
 
-                if (time) {
+                for (const statement of claims.P577) {
 
-                    const match =
-                        time.match(/(\d{4})/);
+                    const time =
+                        statement
+                        ?.mainsnak
+                        ?.datavalue
+                        ?.value
+                        ?.time;
 
-                    if (match) {
-                        year = match[1];
+
+                    if (time) {
+
+                        const match =
+                            time.match(/(\d{4})/);
+
+
+                        if (match) {
+
+                            year = match[1];
+
+                            break;
+
+                        }
+
                     }
 
                 }
@@ -487,49 +507,91 @@ async function searchMovies() {
             }
 
 
+            // Film türleri
             let genres = [];
 
 
             if (claims.P136) {
 
-                genres =
-                    claims.P136
-                    .slice(0, 3)
-                    .map(statement => {
+                for (
+                    const statement
+                    of claims.P136.slice(0, 4)
+                ) {
 
-                        const id =
-                            statement
-                            ?.mainsnak
-                            ?.datavalue
-                            ?.value
-                            ?.id;
-
-                        if (!id) return null;
+                    const genreId =
+                        statement
+                        ?.mainsnak
+                        ?.datavalue
+                        ?.value
+                        ?.id;
 
 
-                        const linked =
-                            entityData.entities[id];
+                    if (!genreId) continue;
 
 
-                        return linked
+                    /*
+                      Türün adını ayrıca Wikidata'dan
+                      almamız gerekiyor.
+                    */
+
+                    try {
+
+                        const genreURL =
+                            API +
+                            "?action=wbgetentities" +
+                            "&ids=" +
+                            genreId +
+                            "&languages=tr|en" +
+                            "&props=labels" +
+                            "&format=json" +
+                            "&origin=*";
+
+
+                        const genreResponse =
+                            await fetch(genreURL);
+
+
+                        const genreData =
+                            await genreResponse.json();
+
+
+                        const genreEntity =
+                            genreData.entities[genreId];
+
+
+                        const genreName =
+                            genreEntity
                             ?.labels
                             ?.tr
                             ?.value
                             ||
-                            linked
+                            genreEntity
                             ?.labels
                             ?.en
-                            ?.value
-                            ||
-                            null;
+                            ?.value;
 
-                    })
-                    .filter(Boolean);
+
+                        if (genreName) {
+
+                            genres.push(genreName);
+
+                        }
+
+                    } catch (error) {
+
+                        console.log(
+                            "Tür alınamadı:",
+                            error
+                        );
+
+                    }
+
+                }
 
             }
 
 
-            const label =
+            const title =
                 entity
                 ?.labels
                 ?.tr
@@ -554,14 +616,14 @@ async function searchMovies() {
                 ?.en
                 ?.value
                 ||
-                "Bu film hakkında henüz açıklama bulunmuyor.";
+                "Bu film hakkında açıklama bulunmuyor.";
 
 
             movies.push({
 
                 id: item.id,
 
-                title: label,
+                title: title,
 
                 description: description,
 
@@ -574,13 +636,16 @@ async function searchMovies() {
         }
 
 
+        // Sonuç yoksa
         if (movies.length === 0) {
 
             results.innerHTML = `
                 <div class="message">
-                    Aradığınız isimle eşleşen film bulunamadı.
+                    🎬 Bu aramayla eşleşen film bulunamadı.
                     <br><br>
-                    Farklı bir film adı deneyin.
+                    Örneğin <strong>Interstellar</strong>,
+                    <strong>Inception</strong> veya
+                    <strong>Dune</strong> arayabilirsiniz.
                 </div>
             `;
 
@@ -588,17 +653,21 @@ async function searchMovies() {
         }
 
 
+        // Sonuçları göster
         results.innerHTML =
             movies.map(movie => `
 
                 <div class="card">
 
                     <h3>
-                        ${escapeHTML(movie.title)}
+                        🎬 ${escapeHTML(movie.title)}
                     </h3>
 
+
                     <div class="description">
+
                         ${escapeHTML(movie.description)}
+
                     </div>
 
 
@@ -607,9 +676,11 @@ async function searchMovies() {
                         ${
                             movie.year
                             ?
-                            `<span class="badge">
+                            `
+                            <span class="badge">
                                 📅 ${movie.year}
-                            </span>`
+                            </span>
+                            `
                             :
                             ""
                         }
@@ -618,11 +689,13 @@ async function searchMovies() {
                         ${
                             movie.genres.length
                             ?
-                            movie.genres.map(genre => `
+                            movie.genres
+                            .map(genre => `
                                 <span class="badge">
                                     🎭 ${escapeHTML(genre)}
                                 </span>
-                            `).join("")
+                            `)
+                            .join("")
                             :
                             ""
                         }
@@ -631,11 +704,11 @@ async function searchMovies() {
 
 
                     <a
-                        href="https://www.wikidata.org/wiki/${movie.id}"
+                        href="https://www.wikidata.org/entity/${movie.id}"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        Film bilgilerini gör →
+                        Detayları görüntüle →
                     </a>
 
                 </div>
@@ -647,14 +720,15 @@ async function searchMovies() {
 
         console.error(error);
 
+
         results.innerHTML = `
             <div class="message">
 
-                Bir bağlantı sorunu oluştu.
+                ❌ Bir bağlantı sorunu oluştu.
 
                 <br><br>
 
-                Lütfen birkaç saniye sonra tekrar deneyin.
+                Birkaç saniye sonra tekrar deneyin.
 
             </div>
         `;
@@ -664,17 +738,21 @@ async function searchMovies() {
 }
 
 
+// Enter tuşuyla arama
 document
     .getElementById("searchInput")
-    .addEventListener("keydown", function(event) {
+    .addEventListener(
+        "keydown",
+        function(event) {
 
-        if (event.key === "Enter") {
+            if (event.key === "Enter") {
 
-            searchMovies();
+                searchMovies();
+
+            }
 
         }
-
-    });
+    );
 
 </script>
 
