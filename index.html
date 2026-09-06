@@ -1,179 +1,1715 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Film Portal</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#0b0b0f;color:#fff}
-header{background:#111;padding:18px 8%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222}
-.logo{color:#e50914;font-size:26px;font-weight:bold}
-.hero{padding:70px 20px;text-align:center;background:linear-gradient(135deg,#222,#0b0b0f)}
-.hero h1{font-size:42px;margin-bottom:12px}
-.hero p{color:#bbb;margin-bottom:25px}
-.search{display:flex;max-width:650px;margin:auto}
-.search input{flex:1;padding:15px;border:none;border-radius:8px 0 0 8px;font-size:16px}
-.search button{padding:15px 22px;border:none;background:#e50914;color:#fff;font-weight:bold;border-radius:0 8px 8px 0;cursor:pointer}
-.container{width:92%;max-width:1200px;margin:40px auto}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.card{background:#17171d;border-radius:12px;overflow:hidden;border:1px solid #26262f}
-.poster{width:100%;height:340px;object-fit:cover;background:#222}
-.info{padding:18px}
-.info h3{margin-bottom:8px}
-.info p{color:#bbb;font-size:14px;line-height:1.5}
-.year{color:#ffd54f;margin-top:8px}
-.btn{margin-top:15px;width:100%;padding:12px;border:none;background:#e50914;color:#fff;border-radius:8px;cursor:pointer}
-#detail{display:none;margin-top:35px;background:#17171d;border-radius:12px;padding:25px;border:1px solid #26262f}
-.detail-flex{display:flex;gap:25px;flex-wrap:wrap}
-.detail-poster{width:260px;border-radius:10px}
-.badge{display:inline-block;background:#2b2b36;padding:6px 10px;border-radius:20px;margin:5px 5px 0 0;font-size:13px}
-.close{background:#333;margin-top:20px}
-.loading{text-align:center;padding:30px;color:#aaa}
-@media(max-width:700px){
-.hero h1{font-size:30px}
-.search{flex-direction:column}
-.search input,.search button{border-radius:8px;margin:5px 0}
-.detail-poster{width:100%}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#09090d;
+    color:white;
+}
+
+/* HEADER */
+
+header{
+    background:#111116;
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #25252d;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    color:#e50914;
+    font-size:27px;
+    font-weight:bold;
+}
+
+nav a{
+    color:#ddd;
+    text-decoration:none;
+    margin-left:25px;
+    cursor:pointer;
+}
+
+nav a:hover{
+    color:#e50914;
+}
+
+/* HERO */
+
+.hero{
+    padding:85px 20px;
+    text-align:center;
+    background:
+    radial-gradient(circle at center,#24151a 0%,#0b0b10 55%,#09090d 100%);
+}
+
+.hero h1{
+    font-size:48px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    color:#aaa;
+    font-size:17px;
+    margin-bottom:30px;
+}
+
+.search{
+    display:flex;
+    max-width:680px;
+    margin:auto;
+}
+
+.search input{
+    flex:1;
+    padding:17px;
+    border:none;
+    outline:none;
+    font-size:16px;
+    border-radius:8px 0 0 8px;
+}
+
+.search button{
+    padding:17px 27px;
+    border:none;
+    background:#e50914;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    border-radius:0 8px 8px 0;
+}
+
+.search button:hover{
+    background:#b20710;
+}
+
+/* CONTAINER */
+
+.container{
+    width:92%;
+    max-width:1250px;
+    margin:45px auto;
+}
+
+.section-title{
+    margin-bottom:25px;
+    font-size:27px;
+}
+
+/* FAVORITES */
+
+#favoritesSection{
+    display:none;
+}
+
+#favorites{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+/* RESULTS */
+
+#results{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:22px;
+}
+
+/* CARD */
+
+.card{
+    background:#15151b;
+    border:1px solid #292931;
+    border-radius:13px;
+    overflow:hidden;
+    transition:0.25s;
+    position:relative;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#e50914;
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
+}
+
+.poster{
+    width:100%;
+    height:335px;
+    object-fit:cover;
+    background:#222;
+    display:block;
+}
+
+.info{
+    padding:17px;
+}
+
+.info h3{
+    font-size:19px;
+    margin-bottom:9px;
+}
+
+.description{
+    color:#aaa;
+    font-size:14px;
+    line-height:1.5;
+    min-height:42px;
+}
+
+.year{
+    color:#ffc107;
+    margin-top:12px;
+    font-size:14px;
+}
+
+/* BUTTONS */
+
+.btn{
+    margin-top:15px;
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+    color:white;
+    background:#e50914;
+}
+
+.btn:hover{
+    background:#b20710;
+}
+
+.favorite-btn{
+    background:#292931;
+}
+
+.favorite-btn:hover{
+    background:#44444d;
+}
+
+/* DETAIL */
+
+#detail{
+    display:none;
+    margin-top:45px;
+    background:#15151b;
+    border:1px solid #303039;
+    border-radius:15px;
+    padding:30px;
+    box-shadow:0 15px 50px rgba(0,0,0,0.35);
+}
+
+.detail-flex{
+    display:flex;
+    gap:30px;
+    align-items:flex-start;
+}
+
+.detail-poster{
+    width:280px;
+    max-width:100%;
+    border-radius:12px;
+    object-fit:cover;
+}
+
+.detail-content{
+    flex:1;
+}
+
+.detail-content h1{
+    font-size:35px;
+    margin-bottom:10px;
+}
+
+.detail-year{
+    color:#ffc107;
+    margin-bottom:20px;
+}
+
+.detail-description{
+    color:#ccc;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.detail-row{
+    margin:16px 0;
+    line-height:1.7;
+}
+
+.label{
+    color:#e50914;
+    font-weight:bold;
+}
+
+.badge{
+    display:inline-block;
+    background:#292931;
+    color:#ddd;
+    padding:7px 11px;
+    border-radius:20px;
+    margin:4px 5px 4px 0;
+    font-size:13px;
+}
+
+/* RATING */
+
+.rating-box{
+    margin:20px 0;
+    padding:18px;
+    background:#202027;
+    border-radius:10px;
+}
+
+.rating-title{
+    margin-bottom:12px;
+    font-weight:bold;
+}
+
+.stars{
+    display:flex;
+    gap:5px;
+}
+
+.star{
+    font-size:28px;
+    cursor:pointer;
+    filter:grayscale(1);
+    transition:0.15s;
+}
+
+.star.active{
+    filter:grayscale(0);
+}
+
+.rating-result{
+    margin-top:10px;
+    color:#ffc107;
+    font-size:14px;
+}
+
+/* TRAILER */
+
+.trailer{
+    margin-top:25px;
+}
+
+.trailer iframe{
+    width:100%;
+    max-width:760px;
+    height:420px;
+    border:none;
+    border-radius:12px;
+}
+
+/* FAVORITE */
+
+.favorite-big{
+    display:inline-block;
+    width:auto;
+    padding:12px 20px;
+    margin-right:8px;
+}
+
+.close{
+    width:auto;
+    padding:12px 25px;
+    background:#333;
+}
+
+/* LOADING */
+
+.loading{
+    text-align:center;
+    padding:40px;
+    color:#999;
+    grid-column:1/-1;
+}
+
+.error{
+    text-align:center;
+    padding:40px;
+    color:#ff5555;
+    grid-column:1/-1;
+}
+
+/* EMPTY */
+
+.empty{
+    text-align:center;
+    color:#888;
+    padding:30px;
+    grid-column:1/-1;
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:80px;
+    padding:35px;
+    text-align:center;
+    background:#111116;
+    color:#777;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    header{
+        padding:16px 5%;
+    }
+
+    nav{
+        display:none;
+    }
+
+    .hero{
+        padding:60px 15px;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .search{
+        flex-direction:column;
+    }
+
+    .search input{
+        border-radius:8px;
+        margin-bottom:8px;
+    }
+
+    .search button{
+        border-radius:8px;
+    }
+
+    .detail-flex{
+        flex-direction:column;
+    }
+
+    .detail-poster{
+        width:100%;
+        max-width:350px;
+        margin:auto;
+    }
+
+    .detail-content h1{
+        font-size:28px;
+    }
+
+    .trailer iframe{
+        height:220px;
+    }
+}
+
 </style>
 </head>
+
 <body>
 
 <header>
-<div class="logo">🎬 Film Portal</div>
-<div>Ana Sayfa</div>
+
+    <div class="logo">
+        🎬 Film Portal
+    </div>
+
+    <nav>
+        <a onclick="goHome()">Ana Sayfa</a>
+        <a onclick="showFavorites()">❤️ Favorilerim</a>
+    </nav>
+
 </header>
 
+
 <section class="hero">
-<h1>Film Dünyasını Keşfet</h1>
-<p>Gerçek film verileriyle ücretsiz arama</p>
-<div class="search">
-<input id="q" placeholder="Interstellar, Dune, Inception...">
-<button onclick="search()">Ara</button>
-</div>
+
+    <h1>Film Dünyasını Keşfet 🎬</h1>
+
+    <p>
+        Filmleri keşfet, favorilerine ekle ve detaylarını incele.
+    </p>
+
+    <div class="search">
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="Interstellar, Dune, Inception..."
+        >
+
+        <button onclick="searchMovies()">
+            Ara 🔎
+        </button>
+
+    </div>
+
 </section>
 
-<div class="container">
-<h2 style="margin-bottom:20px">Film Sonuçları</h2>
-<div id="results" class="grid">
-<div class="loading">Bir film arayın</div>
+
+<!-- FAVORİLER -->
+
+<div class="container" id="favoritesSection">
+
+    <h2 class="section-title">
+        ❤️ Favori Filmlerim
+    </h2>
+
+    <div id="favorites"></div>
+
 </div>
 
-<div id="detail"></div>
+
+<!-- FİLMLER -->
+
+<div class="container" id="moviesSection">
+
+    <h2 class="section-title">
+        🎬 Film Sonuçları
+    </h2>
+
+    <div id="results">
+
+        <div class="empty">
+            Bir film adı arayın.
+        </div>
+
+    </div>
+
+
+    <!-- DETAY -->
+
+    <div id="detail"></div>
+
 </div>
+
+
+<footer>
+
+    © 2026 Film Portal
+
+</footer>
+
 
 <script>
-const API="https://www.wikidata.org/w/api.php";
 
-function fileUrl(name){
- if(!name) return "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg";
- return "https://commons.wikimedia.org/wiki/Special:FilePath/"+encodeURIComponent(name)+"?width=600";
-}
+/* =====================================================
+   AYARLAR
+===================================================== */
+
+const API =
+"https://www.wikidata.org/w/api.php";
+
+
+/* =====================================================
+   PLACEHOLDER
+===================================================== */
+
+const PLACEHOLDER =
+"https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg";
+
+
+/* =====================================================
+   WIKIDATA ENTITY
+===================================================== */
 
 async function getEntities(ids){
- const r=await fetch(API+"?action=wbgetentities&ids="+ids.join("|")+"&languages=tr|en&props=labels|descriptions|claims&format=json&origin=*");
- return (await r.json()).entities;
+
+    if(!ids || ids.length === 0){
+        return {};
+    }
+
+    const uniqueIds =
+        [...new Set(ids)];
+
+    const url =
+        API +
+        "?action=wbgetentities" +
+        "&ids=" +
+        uniqueIds.join("|") +
+        "&languages=tr|en" +
+        "&props=labels|descriptions|claims" +
+        "&format=json" +
+        "&origin=*";
+
+    const response =
+        await fetch(url);
+
+    const data =
+        await response.json();
+
+    return data.entities || {};
 }
 
-function label(e){
- return e?.labels?.tr?.value||e?.labels?.en?.value||"";
+
+/* =====================================================
+   LABEL
+===================================================== */
+
+function getLabel(entity){
+
+    if(!entity){
+        return "";
+    }
+
+    if(
+        entity.labels &&
+        entity.labels.tr
+    ){
+        return entity.labels.tr.value;
+    }
+
+    if(
+        entity.labels &&
+        entity.labels.en
+    ){
+        return entity.labels.en.value;
+    }
+
+    return "";
 }
 
-function ids(claims,p){
- return (claims[p]||[]).map(x=>x?.mainsnak?.datavalue?.value?.id).filter(Boolean);
+
+/* =====================================================
+   CLAIM IDS
+===================================================== */
+
+function getClaimIds(claims, property){
+
+    if(
+        !claims ||
+        !claims[property]
+    ){
+        return [];
+    }
+
+    return claims[property]
+        .map(item =>
+            item?.mainsnak?.datavalue?.value?.id
+        )
+        .filter(Boolean);
 }
 
-function year(claims){
- const t=claims?.P577?.[0]?.mainsnak?.datavalue?.value?.time;
- return t? t.substring(1,5):"";
+
+/* =====================================================
+   YEAR
+===================================================== */
+
+function getYear(claims){
+
+    const value =
+        claims?.P577?.[0]
+        ?.mainsnak
+        ?.datavalue
+        ?.value
+        ?.time;
+
+    if(!value){
+        return "";
+    }
+
+    return value.substring(1,5);
 }
 
-function poster(claims){
- return claims?.P18?.[0]?.mainsnak?.datavalue?.value||"";
+
+/* =====================================================
+   POSTER
+===================================================== */
+
+function getPoster(claims){
+
+    const value =
+        claims?.P18?.[0]
+        ?.mainsnak
+        ?.datavalue
+        ?.value;
+
+    if(!value){
+        return PLACEHOLDER;
+    }
+
+    return (
+        "https://commons.wikimedia.org/wiki/Special:FilePath/" +
+        encodeURIComponent(value) +
+        "?width=600"
+    );
 }
 
-async function search(){
- const q=document.getElementById("q").value.trim();
- const results=document.getElementById("results");
- document.getElementById("detail").style.display="none";
- if(!q){results.innerHTML="<div class='loading'>Film adı yaz.</div>";return;}
 
- results.innerHTML="<div class='loading'>Aranıyor...</div>";
+/* =====================================================
+   HTML GÜVENLİĞİ
+===================================================== */
 
- const s=await fetch(API+"?action=wbsearchentities&search="+encodeURIComponent(q)+"&language=tr&format=json&limit=20&origin=*");
- const data=await s.json();
- const all=data.search.map(x=>x.id);
- const ent=await getEntities(all);
+function escapeHTML(text){
 
- let html="";
- let count=0;
+    if(!text){
+        return "";
+    }
 
- for(const id of all){
-   const e=ent[id];
-   const c=e.claims||{};
-   if(!ids(c,"P31").includes("Q11424")) continue;
-   count++;
-   html+=`
-   <div class="card">
-      <img class="poster" src="${fileUrl(poster(c))}">
-      <div class="info">
-        <h3>${label(e)}</h3>
-        <p>${e.descriptions?.tr?.value||e.descriptions?.en?.value||""}</p>
-        <div class="year">📅 ${year(c)}</div>
-        <button class="btn" onclick="detail('${id}')">Film Detayı</button>
-      </div>
-   </div>`;
- }
- results.innerHTML=count?html:"<div class='loading'>Film bulunamadı.</div>";
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 }
+
+
+/* =====================================================
+   FAVORİLERİ GETİR
+===================================================== */
+
+function getFavorites(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem("filmPortalFavorites")
+        ) || [];
+
+    }catch(error){
+
+        return [];
+
+    }
+}
+
+
+/* =====================================================
+   FAVORİ KAYDET
+===================================================== */
+
+function saveFavorites(favorites){
+
+    localStorage.setItem(
+        "filmPortalFavorites",
+        JSON.stringify(favorites)
+    );
+
+}
+
+
+/* =====================================================
+   FAVORİ Mİ?
+===================================================== */
+
+function isFavorite(id){
+
+    const favorites =
+        getFavorites();
+
+    return favorites.some(
+        movie => movie.id === id
+    );
+
+}
+
+
+/* =====================================================
+   FAVORİ EKLE / ÇIKAR
+===================================================== */
+
+function toggleFavorite(id){
+
+    let favorites =
+        getFavorites();
+
+    const index =
+        favorites.findIndex(
+            movie => movie.id === id
+        );
+
+    if(index >= 0){
+
+        favorites.splice(index,1);
+
+    }else{
+
+        const card =
+            document.querySelector(
+                `[data-movie-id="${id}"]`
+            );
+
+        if(card){
+
+            const movie = {
+
+                id:id,
+
+                title:
+                    card.dataset.title || "",
+
+                poster:
+                    card.dataset.poster || PLACEHOLDER,
+
+                year:
+                    card.dataset.year || ""
+
+            };
+
+            favorites.push(movie);
+
+        }
+
+    }
+
+    saveFavorites(favorites);
+
+    updateFavoriteButtons();
+
+    renderFavorites();
+
+}
+
+
+/* =====================================================
+   FAVORİ BUTONLARINI GÜNCELLE
+===================================================== */
+
+function updateFavoriteButtons(){
+
+    document
+        .querySelectorAll(".favorite-btn")
+        .forEach(button => {
+
+            const id =
+                button.dataset.id;
+
+            if(isFavorite(id)){
+
+                button.innerHTML =
+                    "❤️ Favorilerden Çıkar";
+
+            }else{
+
+                button.innerHTML =
+                    "🤍 Favorilere Ekle";
+
+            }
+
+        });
+
+}
+
+
+/* =====================================================
+   FAVORİLERİ GÖSTER
+===================================================== */
+
+function renderFavorites(){
+
+    const box =
+        document.getElementById("favorites");
+
+    const favorites =
+        getFavorites();
+
+    if(favorites.length === 0){
+
+        box.innerHTML =
+            '<div class="empty">Henüz favori film eklemediniz.</div>';
+
+        return;
+
+    }
+
+    box.innerHTML = "";
+
+    favorites.forEach(movie => {
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "card";
+
+        div.innerHTML = `
+
+            <img
+                class="poster"
+                src="${escapeHTML(movie.poster)}"
+                onerror="this.src='${PLACEHOLDER}'"
+            >
+
+            <div class="info">
+
+                <h3>
+                    ${escapeHTML(movie.title)}
+                </h3>
+
+                ${
+                    movie.year
+                    ?
+                    `<div class="year">
+                        📅 ${escapeHTML(movie.year)}
+                    </div>`
+                    :
+                    ""
+                }
+
+                <button
+                    class="btn"
+                    onclick="detail('${movie.id}')"
+                >
+                    🎬 Film Detayı
+                </button>
+
+                <button
+                    class="btn favorite-btn"
+                    data-id="${movie.id}"
+                    onclick="toggleFavorite('${movie.id}')"
+                >
+                    ❤️ Favorilerden Çıkar
+                </button>
+
+            </div>
+
+        `;
+
+        box.appendChild(div);
+
+    });
+
+}
+
+
+/* =====================================================
+   FİLM ARA
+===================================================== */
+
+async function searchMovies(){
+
+    const input =
+        document.getElementById("searchInput");
+
+    const results =
+        document.getElementById("results");
+
+    const detail =
+        document.getElementById("detail");
+
+    const query =
+        input.value.trim();
+
+    if(!query){
+
+        results.innerHTML =
+            '<div class="empty">Film adı yazın.</div>';
+
+        return;
+
+    }
+
+    detail.style.display =
+        "none";
+
+    detail.innerHTML =
+        "";
+
+    results.innerHTML =
+        '<div class="loading">🔎 Filmler aranıyor...</div>';
+
+    try{
+
+        /* ARAMA */
+
+        const searchUrl =
+            API +
+            "?action=wbsearchentities" +
+            "&search=" +
+            encodeURIComponent(query) +
+            "&language=tr" +
+            "&uselang=tr" +
+            "&format=json" +
+            "&limit=20" +
+            "&origin=*";
+
+        const searchResponse =
+            await fetch(searchUrl);
+
+        const searchData =
+            await searchResponse.json();
+
+        if(
+            !searchData.search ||
+            searchData.search.length === 0
+        ){
+
+            results.innerHTML =
+                '<div class="error">Film bulunamadı.</div>';
+
+            return;
+
+        }
+
+
+        const ids =
+            searchData.search.map(
+                item => item.id
+            );
+
+
+        /* DETAY VERİLERİ */
+
+        const entities =
+            await getEntities(ids);
+
+
+        let movies = [];
+
+
+        for(const id of ids){
+
+            const entity =
+                entities[id];
+
+            if(!entity){
+                continue;
+            }
+
+            const claims =
+                entity.claims || {};
+
+
+            /* P31 = FILM */
+
+            const types =
+                getClaimIds(
+                    claims,
+                    "P31"
+                );
+
+
+            if(!types.includes("Q11424")){
+                continue;
+            }
+
+
+            movies.push({
+
+                id:id,
+
+                entity:entity
+
+            });
+
+        }
+
+
+        if(movies.length === 0){
+
+            results.innerHTML =
+                '<div class="error">Uygun film bulunamadı.</div>';
+
+            return;
+
+        }
+
+
+        results.innerHTML =
+            "";
+
+
+        /* KARTLAR */
+
+        movies.forEach(movie => {
+
+            const entity =
+                movie.entity;
+
+            const claims =
+                entity.claims || {};
+
+            const title =
+                getLabel(entity) ||
+                query;
+
+            const description =
+                entity.descriptions?.tr?.value ||
+                entity.descriptions?.en?.value ||
+                "Film açıklaması bulunamadı.";
+
+            const movieYear =
+                getYear(claims);
+
+            const moviePoster =
+                getPoster(claims);
+
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "card";
+
+
+            card.dataset.movieId =
+                movie.id;
+
+            card.dataset.title =
+                title;
+
+            card.dataset.poster =
+                moviePoster;
+
+            card.dataset.year =
+                movieYear;
+
+
+            const favorite =
+                isFavorite(movie.id);
+
+
+            card.innerHTML = `
+
+                <img
+                    class="poster"
+                    src="${escapeHTML(moviePoster)}"
+                    onerror="this.src='${PLACEHOLDER}'"
+                    alt="${escapeHTML(title)}"
+                >
+
+                <div class="info">
+
+                    <h3>
+                        ${escapeHTML(title)}
+                    </h3>
+
+                    <div class="description">
+                        ${escapeHTML(description)}
+                    </div>
+
+                    ${
+                        movieYear
+                        ?
+                        `<div class="year">
+                            📅 ${escapeHTML(movieYear)}
+                        </div>`
+                        :
+                        ""
+                    }
+
+
+                    <button
+                        class="btn"
+                        onclick="detail('${movie.id}')"
+                    >
+                        🎬 Film Detayı
+                    </button>
+
+
+                    <button
+                        class="btn favorite-btn"
+                        data-id="${movie.id}"
+                        onclick="toggleFavorite('${movie.id}')"
+                    >
+                        ${
+                            favorite
+                            ?
+                            "❤️ Favorilerden Çıkar"
+                            :
+                            "🤍 Favorilere Ekle"
+                        }
+                    </button>
+
+                </div>
+
+            `;
+
+
+            results.appendChild(card);
+
+        });
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        results.innerHTML =
+            '<div class="error">Bir hata oluştu. Tekrar deneyin.</div>';
+
+    }
+
+}
+
+
+/* =====================================================
+   FILM DETAYI
+===================================================== */
 
 async function detail(id){
- const box=document.getElementById("detail");
- box.style.display="block";
- box.innerHTML="<div class='loading'>Yükleniyor...</div>";
- box.scrollIntoView({behavior:"smooth"});
 
- const e=(await getEntities([id]))[id];
- const c=e.claims||{};
- const related=[...ids(c,"P57"),...ids(c,"P136"),...ids(c,"P161").slice(0,8)];
- const map=related.length?await getEntities([...new Set(related)]):{};
+    const box =
+        document.getElementById("detail");
 
- const directors=ids(c,"P57").map(x=>label(map[x])).join(", ")||"Bilinmiyor";
- const genres=ids(c,"P136").map(x=>label(map[x]));
- const actors=ids(c,"P161").slice(0,8).map(x=>label(map[x]));
+    box.style.display =
+        "block";
 
- box.innerHTML=`
- <div class="detail-flex">
-   <img class="detail-poster" src="${fileUrl(poster(c))}">
-   <div style="flex:1;min-width:260px">
-      <h1 style="margin-bottom:10px">${label(e)}</h1>
-      <div style="color:#ffd54f;margin-bottom:15px">📅 ${year(c)}</div>
-      <p style="line-height:1.7;color:#ddd">${e.descriptions?.tr?.value||e.descriptions?.en?.value||""}</p>
+    box.innerHTML =
+        '<div class="loading">🎬 Film bilgileri yükleniyor...</div>';
 
-      <div style="margin-top:18px">
-        <strong>🎥 Yönetmen</strong><br>${directors}
-      </div>
+    box.scrollIntoView({
+        behavior:"smooth"
+    });
 
-      <div style="margin-top:18px">
-        <strong>🎭 Türler</strong><br>
-        ${genres.map(g=>`<span class="badge">${g}</span>`).join("")}
-      </div>
 
-      <div style="margin-top:18px">
-        <strong>👥 Oyuncular</strong><br>
-        ${actors.join(", ")||"Bilinmiyor"}
-      </div>
+    try{
 
-      <button class="btn close" onclick="document.getElementById('detail').style.display='none'">Kapat</button>
-   </div>
- </div>`;
+        const entities =
+            await getEntities([id]);
+
+        const movie =
+            entities[id];
+
+        if(!movie){
+
+            box.innerHTML =
+                '<div class="error">Film bilgisi bulunamadı.</div>';
+
+            return;
+
+        }
+
+
+        const claims =
+            movie.claims || {};
+
+
+        const title =
+            getLabel(movie) ||
+            "Film";
+
+
+        const description =
+            movie.descriptions?.tr?.value ||
+            movie.descriptions?.en?.value ||
+            "Film açıklaması bulunamadı.";
+
+
+        const movieYear =
+            getYear(claims);
+
+
+        const moviePoster =
+            getPoster(claims);
+
+
+        /* YÖNETMEN */
+
+        const directorIds =
+            getClaimIds(
+                claims,
+                "P57"
+            );
+
+
+        /* TÜRLER */
+
+        const genreIds =
+            getClaimIds(
+                claims,
+                "P136"
+            );
+
+
+        /* OYUNCULAR */
+
+        const actorIds =
+            getClaimIds(
+                claims,
+                "P161"
+            ).slice(0,10);
+
+
+        const relatedIds = [
+
+            ...directorIds,
+
+            ...genreIds,
+
+            ...actorIds
+
+        ];
+
+
+        const related =
+            await getEntities(
+                relatedIds
+            );
+
+
+        const directors =
+            directorIds
+                .map(id => getLabel(related[id]))
+                .filter(Boolean);
+
+
+        const genres =
+            genreIds
+                .map(id => getLabel(related[id]))
+                .filter(Boolean);
+
+
+        const actors =
+            actorIds
+                .map(id => getLabel(related[id]))
+                .filter(Boolean);
+
+
+        const favorite =
+            isFavorite(id);
+
+
+        /* DETAY */
+
+        box.innerHTML = `
+
+            <div class="detail-flex">
+
+                <img
+                    class="detail-poster"
+                    src="${escapeHTML(moviePoster)}"
+                    onerror="this.src='${PLACEHOLDER}'"
+                    alt="${escapeHTML(title)}"
+                >
+
+
+                <div class="detail-content">
+
+                    <h1>
+                        ${escapeHTML(title)}
+                    </h1>
+
+
+                    ${
+                        movieYear
+                        ?
+                        `<div class="detail-year">
+                            📅 ${escapeHTML(movieYear)}
+                        </div>`
+                        :
+                        ""
+                    }
+
+
+                    <div class="detail-description">
+                        ${escapeHTML(description)}
+                    </div>
+
+
+                    <!-- PUAN -->
+
+                    <div class="rating-box">
+
+                        <div class="rating-title">
+                            ⭐ Bu filme puan ver
+                        </div>
+
+                        <div
+                            class="stars"
+                            id="stars-${id}"
+                        >
+
+                            ${[1,2,3,4,5]
+                                .map(number => `
+                                    <span
+                                        class="star"
+                                        onclick="rateMovie('${id}',${number})"
+                                    >
+                                        ⭐
+                                    </span>
+                                `)
+                                .join("")
+                            }
+
+                        </div>
+
+                        <div
+                            class="rating-result"
+                            id="rating-${id}"
+                        >
+                            Henüz puan vermediniz.
+                        </div>
+
+                    </div>
+
+
+                    <!-- YÖNETMEN -->
+
+                    <div class="detail-row">
+
+                        <span class="label">
+                            🎥 Yönetmen:
+                        </span>
+
+                        ${
+                            directors.length
+                            ?
+                            directors
+                                .map(escapeHTML)
+                                .join(", ")
+                            :
+                            "Bilinmiyor"
+                        }
+
+                    </div>
+
+
+                    <!-- TÜRLER -->
+
+                    <div class="detail-row">
+
+                        <span class="label">
+                            🎭 Türler:
+                        </span>
+
+                        <br>
+
+                        ${
+                            genres.length
+                            ?
+                            genres
+                                .map(g =>
+                                    `<span class="badge">
+                                        ${escapeHTML(g)}
+                                    </span>`
+                                )
+                                .join("")
+                            :
+                            "Bilinmiyor"
+                        }
+
+                    </div>
+
+
+                    <!-- OYUNCULAR -->
+
+                    <div class="detail-row">
+
+                        <span class="label">
+                            👥 Oyuncular:
+                        </span>
+
+                        <br>
+
+                        ${
+                            actors.length
+                            ?
+                            actors
+                                .map(escapeHTML)
+                                .join(", ")
+                            :
+                            "Bilinmiyor"
+                        }
+
+                    </div>
+
+
+                    <!-- FAVORİ -->
+
+                    <button
+                        class="btn favorite-big favorite-btn"
+                        data-id="${id}"
+                        onclick="toggleFavorite('${id}')"
+                    >
+                        ${
+                            favorite
+                            ?
+                            "❤️ Favorilerden Çıkar"
+                            :
+                            "🤍 Favorilere Ekle"
+                        }
+                    </button>
+
+
+                    <button
+                        class="btn close"
+                        onclick="closeDetail()"
+                    >
+                        Kapat
+                    </button>
+
+
+                    <!-- FRAGMAN -->
+
+                    <div class="trailer">
+
+                        <h3 style="margin-bottom:15px;">
+                            ▶️ Film Fragmanı
+                        </h3>
+
+                        <p style="color:#999;margin-bottom:15px;">
+                            Fragmanı YouTube'da aramak için aşağıdaki butonu kullanabilirsiniz.
+                        </p>
+
+                        <button
+                            class="btn"
+                            onclick="openTrailer('${encodeURIComponent(title + " trailer") }')"
+                            style="max-width:300px;"
+                        >
+                            ▶️ YouTube'da Fragmanı Ara
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        /* KAYITLI PUANI GÖSTER */
+
+        showSavedRating(id);
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        box.innerHTML =
+            '<div class="error">Film detayları yüklenirken hata oluştu.</div>';
+
+    }
+
 }
 
-document.getElementById("q").addEventListener("keydown",e=>{
- if(e.key==="Enter") search();
-});
+
+/* =====================================================
+   PUAN VER
+===================================================== */
+
+function rateMovie(id, rating){
+
+    const ratings =
+        JSON.parse(
+            localStorage.getItem("filmPortalRatings") || "{}"
+        );
+
+
+    ratings[id] =
+        rating;
+
+
+    localStorage.setItem(
+        "filmPortalRatings",
+        JSON.stringify(ratings)
+    );
+
+
+    showSavedRating(id);
+
+}
+
+
+/* =====================================================
+   KAYITLI PUANI GÖSTER
+===================================================== */
+
+function showSavedRating(id){
+
+    const ratings =
+        JSON.parse(
+            localStorage.getItem("filmPortalRatings") || "{}"
+        );
+
+
+    const rating =
+        ratings[id];
+
+
+    const stars =
+        document.querySelectorAll(
+            `#stars-${id} .star`
+        );
+
+
+    const result =
+        document.getElementById(
+            `rating-${id}`
+        );
+
+
+    if(!rating){
+
+        if(result){
+
+            result.innerHTML =
+                "Henüz puan vermediniz.";
+
+        }
+
+        return;
+
+    }
+
+
+    stars.forEach(
+        (star,index) => {
+
+            if(index < rating){
+
+                star.classList.add("active");
+
+            }else{
+
+                star.classList.remove("active");
+
+            }
+
+        }
+    );
+
+
+    if(result){
+
+        result.innerHTML =
+            `Sizin puanınız: ${rating}/5 ⭐`;
+
+    }
+
+}
+
+
+/* =====================================================
+   YOUTUBE FRAGMAN
+===================================================== */
+
+function openTrailer(query){
+
+    const url =
+        "https://www.youtube.com/results?search_query=" +
+        query;
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+}
+
+
+/* =====================================================
+   DETAY KAPAT
+===================================================== */
+
+function closeDetail(){
+
+    const detailBox =
+        document.getElementById("detail");
+
+    detailBox.style.display =
+        "none";
+
+    detailBox.innerHTML =
+        "";
+
+}
+
+
+/* =====================================================
+   FAVORİLER SAYFASI
+===================================================== */
+
+function showFavorites(){
+
+    document.getElementById(
+        "favoritesSection"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "moviesSection"
+    ).style.display =
+        "none";
+
+
+    renderFavorites();
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   ANA SAYFA
+===================================================== */
+
+function goHome(){
+
+    document.getElementById(
+        "favoritesSection"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "moviesSection"
+    ).style.display =
+        "block";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   ENTER İLE ARAMA
+===================================================== */
+
+document
+    .getElementById("searchInput")
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(event.key === "Enter"){
+
+                searchMovies();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   BAŞLANGIÇ
+===================================================== */
+
+renderFavorites();
+
 </script>
 
 </body>
